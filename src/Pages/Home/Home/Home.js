@@ -1,9 +1,14 @@
 import React from "react";
+import Info from "../../Info";
+import Banner from "../Banner";
+
+import quote from "../../../assets/icons/quote.svg";
 
 const Home = () => {
   return (
     <div>
-      <h2>this is home</h2>
+      <Banner />
+      <Info />
     </div>
   );
 };
