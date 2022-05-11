@@ -5,7 +5,7 @@ const Banner = () => {
     return (
         <div class="hero min-h-screen px-12">  
         <div class="hero-content flex-col lg:flex-row-reverse">
-          <img src={bannerimg} class="max-w-sm rounded-lg shadow-3xl" />
+          <img src={bannerimg} class="max-w-sm max-w-lg rounded-lg shadow-3xl" />
           <div>
             <h1 class="text-5xl font-bold">Your New Smile Starts here</h1> 
             <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
