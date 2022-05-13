@@ -5,18 +5,18 @@ import Service from "../Service";
 import MakeAppointment from "../MakeAppointment";
 import Testimonial from "../Testimonial";
 import Contact from "../Contact";
-import Footer from "../Footer";
+import Footer from "../../Shared/Footer";
 
 const Home = () => {
   return (
-    <div className="px-12">
+    <div>
       <Banner />
       <Info />
-      <Service/>
-      <MakeAppointment/>
-      <Testimonial/>
-      <Contact/>
-      <Footer/>
+      <Service />
+      <MakeAppointment />
+      <Testimonial />
+      <Contact />
+      <Footer />
     </div>
   );
 };
