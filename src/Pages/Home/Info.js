@@ -8,19 +8,19 @@ const Info = () => {
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 ">
       <InfoCard
         cardInfo="10am to 8pm"
-        bgClass="bg-gradient-to-r from-secondary to-primary"
+        bgclassName="bg-gradient-to-r from-secondary to-primary"
         cardTitle="Opening Hours"
         img={clock}
       />
       <InfoCard
         cardInfo="Brooklyn, NY 10036, United States"
-        bgClass="bg-[#3A4256]"
+        bgclassName="bg-[#3A4256]"
         cardTitle="Visit our location"
         img={marker}
       />
       <InfoCard
         cardInfo="+000 123 456789"
-        bgClass="bg-gradient-to-r from-secondary to-primary"
+        bgclassName="bg-gradient-to-r from-secondary to-primary"
         cardTitle="Contact us now"
         img={phone}
       />

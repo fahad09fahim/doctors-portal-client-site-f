@@ -9,13 +9,13 @@ const Banner = () => {
       style={{
         background: `url(${bg})`,
       }}
-      class="hero min-h-screen bg-cover "
+      className="hero min-h-screen bg-cover "
     >
-      <div class="hero-content flex-col lg:flex-row-reverse">
-        <img src={bannerimg} class="max-w-sm s rounded-lg shadow-3xl " />
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <img src={bannerimg} className="max-w-sm s rounded-lg shadow-3xl " />
         <div>
-          <h1 class="text-5xl font-bold">Your New Smile Starts here</h1>
-          <p class="py-6">
+          <h1 className="text-5xl font-bold">Your New Smile Starts here</h1>
+          <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
