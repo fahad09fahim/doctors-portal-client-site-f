@@ -1,60 +1,80 @@
-import React, { useEffect, useState } from "react";
-import auth from "../../firebase.init";
+import React from "react";
 import {
-  useSendPasswordResetEmail,
-  useSignInWithEmailAndPassword,
+  useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 
-const Login = () => {
-  const [signInWithGoogle, gUser, gloading, gerror] = useSignInWithGoogle(auth);
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
-  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
-  const [email, setEmail] = useState("");
+const SignUp = () => {
+  const navigate = useNavigate();
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  let navigate = useNavigate();
-  let location = useLocation();
-  let from = location.state?.from?.pathname || "/";
-  const onSubmit = (data) => {
-    signInWithEmailAndPassword(data.email, data.password);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const onSubmit = async (data) => {
+    await createUserWithEmailAndPassword(data.email, data.password);
+
+    await updateProfile({ displayName: data.name });
+    navigate("/appointment");
   };
   let errorMessage;
-  useEffect(() => {
-    if (gUser || user) {
-      navigate(from, { replace: true });
-    }
-  }, [gUser, user, from, navigate]);
-  if (loading || gloading) {
+  if (gUser || user) {
+    // console.log(user);
+  }
+  if (loading || gLoading || updating) {
     return <Loading />;
   }
-  if (error || gerror) {
+  if (error || gError || updateError) {
     errorMessage = (
       <p className="text-red-500">
-        <span>{error?.message || gerror?.message}</span>
+        <span>{error?.message || gError?.message || updateError.message}</span>
       </p>
     );
   }
-
   return (
     <div className="flex h-screen justify-center items-center ">
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body ">
-          <h2 className="text-center text-4xl font-bold">Login</h2>
+          <h2 className="text-center text-4xl font-bold">Sign up</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="input input-bordered w-full max-w-xs"
+                {...register("name", {
+                  required: {
+                    value: "true",
+                    message: "Name is Required",
+                  },
+                })}
+                autoComplete="off"
+              />
+              <label className="label">
+                {errors.name?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.name.message}
+                  </span>
+                )}
+              </label>
+            </div>
             <div className="form-control w-full max-w-xs">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
-                autoComplete="off"
                 type="text"
                 placeholder="Your Email"
                 className="input input-bordered w-full max-w-xs"
@@ -68,6 +88,7 @@ const Login = () => {
                     message: "Provide valid Email",
                   },
                 })}
+                autoComplete="off"
               />
               <label className="label">
                 {errors.email?.type === "required" && (
@@ -87,7 +108,6 @@ const Login = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                autoComplete="off"
                 type="password"
                 placeholder="Your pass"
                 className="input input-bordered w-full max-w-xs"
@@ -102,6 +122,7 @@ const Login = () => {
                     message: "Minimum eight characters",
                   },
                 })}
+                autoComplete="off"
               />
               <label className="label">
                 {errors.password?.type === "required" && (
@@ -116,28 +137,17 @@ const Login = () => {
                 )}
               </label>
             </div>
-            <div className="my-2">
-              <button
-                onClick={async () => {
-                  await sendPasswordResetEmail(email);
-                  alert("Sent email");
-                }}
-              >
-                Reset password
-              </button>
-            </div>
             {errorMessage}
             <input
               className="btn w-full max-w-xs text-white "
               type="submit"
-              value="Login"
+              value="Sign up"
             />
           </form>
           <p className="text-center text-sm">
-            New to Doctors Portal?
-            <Link to="/signup" className="text-secondary w-19">
-              {" "}
-              Create a New Account
+            Already have an Account?
+            <Link to="/login" className="text-secondary w-19">
+              {""} Log In
             </Link>
           </p>
           <div className="divider">OR</div>
@@ -153,4 +163,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

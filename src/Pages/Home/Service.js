@@ -20,14 +20,14 @@ const Service = () => {
         <ServiceCard serviceTitle="Teeth Whitening" img={whitening} />
       </div>
       <div className="lg:px-24">
-        <div class="hero min-h-screen bg-base-100  mt-24 pr-5">
-          <div class="hero-content flex-col lg:flex-row ">
-            <img src={treatment} class="max-w-sm rounded-lg shadow-2xl" />
+        <div className="hero min-h-screen bg-base-100  mt-24 pr-5">
+          <div className="hero-content flex-col lg:flex-row ">
+            <img src={treatment} className="max-w-sm rounded-lg shadow-2xl" />
             <div className="pl-10">
-              <h1 class="text-5xl font-bold">
+              <h1 className="text-5xl font-bold">
                 Exceptional Dental Care, on Your Terms
               </h1>
-              <p class="py-6">
+              <p className="py-6">
                 It is a long established fact that a reader will be distracted
                 by the readable content of a page when looking at its layout.
                 The point of using Lorem Ipsumis that it has a more-or-less
