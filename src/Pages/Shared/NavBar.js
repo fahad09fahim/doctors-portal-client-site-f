@@ -8,6 +8,7 @@ const NavBar = () => {
   const [user, loading, error] = useAuthState(auth);
   const logOut = () => {
     signOut(auth);
+    localStorage.removeItem("accessToken");
   };
   const menuItems = (
     <>
@@ -74,7 +75,7 @@ const NavBar = () => {
       <div className="navbar-end">
         <label
           tabIndex="1"
-          for="dashboard-sidebar"
+          htmlFor="dashboard-sidebar"
           className="btn btn-ghost lg:hidden"
         >
           <svg

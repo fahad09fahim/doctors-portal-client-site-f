@@ -12,6 +12,9 @@ import NavBar from "./Pages/Shared/NavBar";
 import DashBoard from "./Pages/Shared/Dashboard/DashBoard";
 import MyAppointment from "./Pages/Shared/Dashboard/MyAppointment";
 import MyReview from "./Pages/Shared/Dashboard/MyReview";
+import History from "./Pages/Shared/Dashboard/History";
+import Users from "./Pages/Shared/Dashboard/Users";
+import RequireAdmin from "./Pages/Login/RequireAdmin";
 
 function App() {
   return (
@@ -40,6 +43,15 @@ function App() {
         >
           <Route index element={<MyAppointment />}></Route>
           <Route path="review" element={<MyReview />}></Route>
+          <Route path="history" element={<History />}></Route>
+          <Route
+            path="users"
+            element={
+              <RequireAdmin>
+                <Users />
+              </RequireAdmin>
+            }
+          ></Route>
         </Route>
       </Routes>
       <ToastContainer />
