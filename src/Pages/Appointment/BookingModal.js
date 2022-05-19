@@ -20,7 +20,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
       patientName: user.displayName,
       phone: e.target.phone.value,
     };
-    fetch("http://localhost:5000/booking", {
+    fetch("https://glacial-fjord-45612.herokuapp.com/booking", {
       method: "POST",
       headers: {
         "content-type": "application/json",
